@@ -1,0 +1,1644 @@
+import csv
+
+import datasets
+import pandas as pd
+from io import StringIO
+
+_CITATION = """@misc{guha2023legalbench,
+      title={LegalBench: A Collaboratively Built Benchmark for Measuring Legal Reasoning in Large Language Models}, 
+      author={Neel Guha and Julian Nyarko and Daniel E. Ho and Christopher Ré and Adam Chilton and Aditya Narayana and Alex Chohlas-Wood and Austin Peters and Brandon Waldon and Daniel N. Rockmore and Diego Zambrano and Dmitry Talisman and Enam Hoque and Faiz Surani and Frank Fagan and Galit Sarfaty and Gregory M. Dickinson and Haggai Porat and Jason Hegland and Jessica Wu and Joe Nudell and Joel Niklaus and John Nay and Jonathan H. Choi and Kevin Tobia and Margaret Hagan and Megan Ma and Michael Livermore and Nikon Rasumov-Rahe and Nils Holzenberger and Noam Kolt and Peter Henderson and Sean Rehaag and Sharad Goel and Shang Gao and Spencer Williams and Sunny Gandhi and Tom Zur and Varun Iyer and Zehua Li},
+      year={2023},
+      eprint={2308.11462},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}"""
+_DESCRIPTION = """LegalBench is a collection of benchmark tasks for evaluating legal reasoning in large language models."""
+_HOMEPAGE = "https://hazyresearch.stanford.edu/legalbench/"
+_URL = "data.tar.gz"
+
+# LICENSE INFORMATION
+CC_BY_4 = "CC BY 4.0"
+CC_BY_NC = "CC BY-NC 4.0"
+CC_BY_SA = "CC BY-SA 4.0"
+CC_BY_NC_SA = "CC BY-NC-SA 4.0"
+MIT = "MIT"
+CC_ATT_NC_L = "Creative Commons Attribution-NonCommercial License"
+CC_BY_NC_3 = "CC BY-NC 3.0"
+
+_CONFIGS = {}
+
+_CONFIGS["abercrombie"] = {
+    "description": "Determine the *Abercrombie* classification for a mark/product pair.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["canada_tax_court_outcomes"] = {
+    "description": "Classify whether an excerpt from a Canada Tax Court decision includes the outcome of the appeal, and if so, specify whether the appeal was allowed or dismissed.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC
+}
+_CONFIGS["citation_prediction_classification"] = {
+    "description": "Given a legal statement and a case citation, determine if the citation is supportive of the legal statement.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "citation": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["citation_prediction_open"] = {
+    "description": "Given a legal statement, predict the name of the case which best supports the statement.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "circuit": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["consumer_contracts_qa"] = {
+    "description": "Answer yes/no questions on the rights and obligations created by clauses in terms of services agreements.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "contract": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "question": datasets.Value("string")
+    },
+    "license": CC_BY_NC
+}
+_CONFIGS["contract_nli_confidentiality_of_agreement"] = {
+    "description": "Identify if the clause provides that the Receiving Party shall not disclose the fact that Agreement was agreed or negotiated.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_nli_explicit_identification"] = {
+    "description": "Identify if the clause provides that all Confidential Information shall be expressly identified by the Disclosing Party.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_nli_inclusion_of_verbally_conveyed_information"] = {
+    "description": "Identify if the clause provides that Confidential Information may include verbally conveyed information.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_nli_limited_use"] = {
+    "description": "Identify if the clause provides that the Receiving Party shall not use any Confidential Information for any purpose other than the purposes stated in Agreement.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_nli_no_licensing"] = {
+    "description": "Identify if the clause provides that the Agreement shall not grant Receiving Party any right to Confidential Information.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_nli_notice_on_compelled_disclosure"] = {
+    "description": "Identify if the clause provides that the Receiving Party shall notify Disclosing Party in case Receiving Party is required by law, regulation or judicial process to disclose any Confidential Information.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_nli_permissible_acquirement_of_similar_information"] = {
+    "description": "Identify if the clause provides that the Receiving Party may acquire information similar to Confidential Information from a third party.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_nli_permissible_copy"] = {
+    "description": "Identify if the clause provides that the Receiving Party may create a copy of some Confidential Information in some circumstances.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_nli_permissible_development_of_similar_information"] = {
+    "description": "Identify if the clause provides that the Receiving Party may independently develop information similar to Confidential Information.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_nli_permissible_post-agreement_possession"] = {
+    "description": "Identify if the clause provides that the Receiving Party may retain some Confidential Information even after the return or destruction of Confidential Information.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_nli_return_of_confidential_information"] = {
+    "description": "Identify if the clause provides that the Receiving Party shall destroy or return some Confidential Information upon the termination of Agreement.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_nli_sharing_with_employees"] = {
+    "description": "Identify if the clause provides that the Receiving Party may share some Confidential Information with some of Receiving Party's employees.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_nli_sharing_with_third-parties"] = {
+    "description": "Identify if the clause provides that the Receiving Party may share some Confidential Information with some of Receiving Party's employees.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_nli_survival_of_obligations"] = {
+    "description": "Identify if the clause provides that ome obligations of Agreement may survive termination of Agreement.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["contract_qa"] = {
+    "description": "Answer yes/no questions about whether contractual clauses discuss particular issues.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "question": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["corporate_lobbying"] = {
+    "description": "Predict if a proposed bill is relevant to a company given information about the bill and the company.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "bill_summary": datasets.Value("string"),
+        "bill_title": datasets.Value("string"),
+        "company_description": datasets.Value("string"),
+        "company_name": datasets.Value("string"),
+        "index": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_affiliate_license-licensee"] = {
+    "description": "Classify if a clause describes a license grant to a licensee (incl. sublicensor) and the affiliates of such licensee/sublicensor.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_affiliate_license-licensor"] = {
+    "description": "Classify if the clause describes a license grant by affiliates of the licensor or that includes intellectual property of affiliates of the licensor.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_anti-assignment"] = {
+    "description": "Classify if the clause requires consent or notice of a party if the contract is assigned to a third party.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_audit_rights"] = {
+    "description": "Classify if the clause gives a party the right to audit the books, records, or physical locations of the counterparty to ensure compliance with the contract.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_cap_on_liability"] = {
+    "description": "Classify if the clause specifies a cap on liability upon the breach of a party\u2019s obligation? This includes time limitation for the counterparty to bring claims or maximum amount for recovery.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_change_of_control"] = {
+    "description": "Classify if the clause gives one party the right to terminate or is consent or notice required of the counterparty if such party undergoes a change of control, such as a merger, stock sale, transfer of all or substantially all of its assets or business, or assignment by operation of law.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_competitive_restriction_exception"] = {
+    "description": "Classify if the clause mentions exceptions or carveouts to Non-Compete, Exclusivity and No-Solicit of Customers.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_covenant_not_to_sue"] = {
+    "description": "Classify if the clause specifies that a party is restricted from contesting the validity of the counterparty\u2019s ownership of intellectual property or otherwise bringing a claim against the counterparty for matters unrelated to the contract.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_effective_date"] = {
+    "description": "Classify if the clause specifies the date upon which the agreement becomes effective.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_exclusivity"] = {
+    "description": "Classify if the clause specifies exclusive dealing commitment with the counterparty. This includes a commitment to procure all \u201crequirements\u201d from one party of certain technology, goods, or services or a prohibition on licensing or selling technology, goods or services to third parties, or a prohibition on collaborating or working with other parties), whether during the contract or after the contract ends (or both).",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_expiration_date"] = {
+    "description": "Classify if the clause specifies the date upon which the initial term expires.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_governing_law"] = {
+    "description": "Classify if the clause specifies which state/country's law governs the contract.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_insurance"] = {
+    "description": "Classify if clause creates a requirement for insurance that must be maintained by one party for the benefit of the counterparty.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_ip_ownership_assignment"] = {
+    "description": "Classify if the clause specifies that intellectual property created by one party become the property of the counterparty, either per the terms of the contract or upon the occurrence of certain events.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_irrevocable_or_perpetual_license"] = {
+    "description": "Classify if the clause specifies a license grant that is irrevocable or perpetual.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_joint_ip_ownership"] = {
+    "description": "Classify if the clause provides for joint or shared ownership of intellectual property between the parties to the contract.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_license_grant"] = {
+    "description": "Classify if the clause contains a license granted by one party to its counterparty.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_liquidated_damages"] = {
+    "description": "Classify if the clause awards either party liquidated damages for breach or a fee upon the termination of a contract (termination fee).",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_minimum_commitment"] = {
+    "description": "Classify if the clause specifies a minimum order size or minimum amount or units pertime period that one party must buy from the counterparty.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_most_favored_nation"] = {
+    "description": "Classify if the clause specifies a minimum order size or minimum amount or units pertime period that one party must buy from the counterparty.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_no-solicit_of_customers"] = {
+    "description": "Classify if the clause restricts a party from contracting or soliciting customers or partners of the counterparty, whether during the contract or after the contract ends (or both).",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_no-solicit_of_employees"] = {
+    "description": "Classify if the clause restricts a party\u2019s soliciting or hiring employees and/or contractors from the counterparty, whether during the contract or after the contract ends (or both).",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_non-compete"] = {
+    "description": "Classify if the clause restricts the ability of a party to compete with the counterparty or operate in a certain geography or business or technology sector.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_non-disparagement"] = {
+    "description": "Classify if the clause requires a party not to disparage the counterparty.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_non-transferable_license"] = {
+    "description": "Classify if the clause limits the ability of a party to transfer the license being granted to a third party.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_notice_period_to_terminate_renewal"] = {
+    "description": "Classify if the clause specifies a notice period required to terminate renewal.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_post-termination_services"] = {
+    "description": "Classify if the clause subjects a party to obligations after the termination or expiration of a contract, including any post-termination transition, payment, transfer of IP, wind-down, last-buy, or similar commitments.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_price_restrictions"] = {
+    "description": "Classify if the clause places a restriction on the ability of a party to raise or reduce prices of technology, goods, or services provided.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_renewal_term"] = {
+    "description": "Classify if the clause specifies a renewal term.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_revenue-profit_sharing"] = {
+    "description": "Classify if the clause require a party to share revenue or profit with the counterparty for any technology, goods, or services.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_rofr-rofo-rofn"] = {
+    "description": "Classify if the clause grant one party a right of first refusal, right of first offer or right of first negotiation to purchase, license, market, or distribute equity interest, technology, assets, products or services.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_source_code_escrow"] = {
+    "description": "Classify if the clause requires one party to deposit its source code into escrow with a third party, which can be released to the counterparty upon the occurrence of certain events (bankruptcy, insolvency, etc.).",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_termination_for_convenience"] = {
+    "description": "Classify if the clause specifies that one party can terminate this contract without cause (solely by giving a notice and allowing a waiting period to expire).",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_third_party_beneficiary"] = {
+    "description": "Classify if the clause specifies that that there a non-contracting party who is a beneficiary to some or all of the clauses in the contract and therefore can enforce its rights against a contracting party.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_uncapped_liability"] = {
+    "description": "Classify if the clause specifies that a party\u2019s liability is uncapped upon the breach of its obligation in the contract. This also includes uncap liability for a particular type of breach such as IP infringement or breach of confidentiality obligation.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_unlimited-all-you-can-eat-license"] = {
+    "description": "Classify if the clause grants one party an \u201centerprise,\u201d \u201call you can eat\u201d or unlimited usage license.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_volume_restriction"] = {
+    "description": "Classify if the clause specifies a fee increase or consent requirement, etc. if one party\u2019s use of the product/services exceeds certain threshold.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["cuad_warranty_duration"] = {
+    "description": "Classify if the clause specifies a  duration of any warranty against defects or errors in technology, products, or services provided under the contract.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string"),
+        "document_name": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["definition_classification"] = {
+    "description": "Given a sentence from a Supreme Court opinion, classify whether or not that sentence offers a definition of a term.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_SA
+}
+_CONFIGS["definition_extraction"] = {
+    "description": "Given a sentence from a Supreme Court opinion offering a definition of a term, extract the term being defined.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_SA
+}
+_CONFIGS["diversity_1"] = {
+    "description": "Given a set of facts about the citizenships of plaintiffs and defendants and the amounts associated with claims, determine if the criteria for diversity jurisdiction have been met (variant 1).",
+    "features": {
+        "aic_is_met": datasets.Value("string"),
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "parties_are_diverse": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["diversity_2"] = {
+    "description": "Given a set of facts about the citizenships of plaintiffs and defendants and the amounts associated with claims, determine if the criteria for diversity jurisdiction have been met (variant 2).",
+    "features": {
+        "aic_is_met": datasets.Value("string"),
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "parties_are_diverse": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["diversity_3"] = {
+    "description": "Given a set of facts about the citizenships of plaintiffs and defendants and the amounts associated with claims, determine if the criteria for diversity jurisdiction have been met (variant 3).",
+    "features": {
+        "aic_is_met": datasets.Value("string"),
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "parties_are_diverse": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["diversity_4"] = {
+    "description": "Given a set of facts about the citizenships of plaintiffs and defendants and the amounts associated with claims, determine if the criteria for diversity jurisdiction have been met (variant 4).",
+    "features": {
+        "aic_is_met": datasets.Value("string"),
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "parties_are_diverse": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["diversity_5"] = {
+    "description": "Given a set of facts about the citizenships of plaintiffs and defendants and the amounts associated with claims, determine if the criteria for diversity jurisdiction have been met (variant 5).",
+    "features": {
+        "aic_is_met": datasets.Value("string"),
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "parties_are_diverse": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["diversity_6"] = {
+    "description": "Given a set of facts about the citizenships of plaintiffs and defendants and the amounts associated with claims, determine if the criteria for diversity jurisdiction have been met (variant 6).",
+    "features": {
+        "aic_is_met": datasets.Value("string"),
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "parties_are_diverse": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["function_of_decision_section"] = {
+    "description": "Classify the function of different sections of legal written opinions.",
+    "features": {
+        "Citation": datasets.Value("string"),
+        "Paragraph": datasets.Value("string"),
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["hearsay"] = {
+    "description": "Classify if a particular piece of evidence qualifies as hearsay.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "slice": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["insurance_policy_interpretation"] = {
+    "description": "Given an insurance claim and policy, determine whether the claim is covered by the policy.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "claim": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "policy": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["international_citizenship_questions"] = {
+    "description": "Answer questions about citizenship law from across the world.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "question": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["jcrew_blocker"] = {
+    "description": "Classify if a clause in a loan agreement is a J.Crew blocker provision.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["learned_hands_benefits"] = {
+    "description": "Classify if a user post implicates legal isssues related to benefits.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_business"] = {
+    "description": "Classify if a user post implicates legal isssues related to business.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_consumer"] = {
+    "description": "Classify if a user post implicates legal isssues related to consumer.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_courts"] = {
+    "description": "Classify if a user post implicates legal isssues related to courts.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_crime"] = {
+    "description": "Classify if a user post implicates legal isssues related to crime.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_divorce"] = {
+    "description": "Classify if a user post implicates legal isssues related to divorce.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_domestic_violence"] = {
+    "description": "Classify if a user post implicates legal isssues related to domestic_violence.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_education"] = {
+    "description": "Classify if a user post implicates legal isssues related to education.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_employment"] = {
+    "description": "Classify if a user post implicates legal isssues related to employment.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_estates"] = {
+    "description": "Classify if a user post implicates legal isssues related to estates.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_family"] = {
+    "description": "Classify if a user post implicates legal isssues related to family.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_health"] = {
+    "description": "Classify if a user post implicates legal isssues related to health.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_housing"] = {
+    "description": "Classify if a user post implicates legal isssues related to housing.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_immigration"] = {
+    "description": "Classify if a user post implicates legal isssues related to immigration.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_torts"] = {
+    "description": "Classify if a user post implicates legal isssues related to torts.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["learned_hands_traffic"] = {
+    "description": "Classify if a user post implicates legal isssues related to traffic.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_SA
+}
+_CONFIGS["legal_reasoning_causality"] = {
+    "description": "Given an excerpt from a district court opinion, classify if it relies on statistical evidence in its reasoning.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_ability_to_consummate_concept_is_subject_to_mae_carveouts"] = {
+    "description": "Read an excerpt from a merger agreement and answer: is the \u201cability to consummate\u201d concept subject to Material Adverse Effect (MAE) carveouts?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_accuracy_of_fundamental_target_rws_bringdown_standard"] = {
+    "description": "Read an excerpt from a merger agreement and answer: how accurate must the fundamental representations and warranties be according to the bring down provision?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_accuracy_of_target_capitalization_rw_(outstanding_shares)_bringdown_standard_answer"] = {
+    "description": "Read an excerpt from a merger agreement and answer: how accurate must the capitalization representations and warranties be according to the bring down provision?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_accuracy_of_target_general_rw_bringdown_timing_answer"] = {
+    "description": "Read an excerpt from a merger agreement and answer: when are representations and warranties required to be made according to the bring down provision?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_additional_matching_rights_period_for_modifications_(cor)"] = {
+    "description": "Read an excerpt from a merger agreement and answer: how long is the additional matching rights period for modifications in case the board changes its recommendation?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_application_of_buyer_consent_requirement_(negative_interim_covenant)"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what negative covenants does the requirement of Buyer consent apply to?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_buyer_consent_requirement_(ordinary_course)"] = {
+    "description": "Read an excerpt from a merger agreement and answer: in case the Buyer\u2019s consent for the acquired company\u2019s ordinary business operations is required, are there any limitations on the Buyer\u2019s right to condition, withhold, or delay their consent?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_change_in_law__subject_to_disproportionate_impact_modifier"] = {
+    "description": "Read an excerpt from a merger agreement and answer: do changes in law that have disproportionate impact qualify for Material Adverse Effect (MAE)?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_changes_in_gaap_or_other_accounting_principles__subject_to_disproportionate_impact_modifier"] = {
+    "description": "Read an excerpt from a merger agreement and answer: do changes in GAAP or other accounting principles that have disproportionate impact qualify for Material Adverse Effect (MAE)?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_cor_permitted_in_response_to_intervening_event"] = {
+    "description": "Read an excerpt from a merger agreement and answer: is Change of Recommendation permitted in response to an intervening event?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_cor_permitted_with_board_fiduciary_determination_only"] = {
+    "description": "Read an excerpt from a merger agreement and answer: is Change of Recommendation permitted as long as the board determines that such change is required to fulfill its fiduciary obligations?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_cor_standard_(intervening_event)"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what standard should the board follow when determining whether to change its recommendation in response to an intervening event?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_cor_standard_(superior_offer)"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what standard should the board follow when determining whether to change its recommendation in connection with a superior offer?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_definition_contains_knowledge_requirement_-_answer"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what is the knowledge requirement in the definition of \u201cIntervening Event\u201d?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_definition_includes_asset_deals"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what qualifies as a superior offer in terms of asset deals?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_definition_includes_stock_deals"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what qualifies as a superior offer in terms of stock deals?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_fiduciary_exception__board_determination_standard"] = {
+    "description": "Read an excerpt from a merger agreement and answer: under what circumstances could the Board take actions on a different acquisition proposal notwithstanding the no-shop provision?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_fiduciary_exception_board_determination_trigger_(no_shop)"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what type of offer could the Board take actions on notwithstanding the no-shop provision?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_financial_point_of_view_is_the_sole_consideration"] = {
+    "description": "Read an excerpt from a merger agreement and answer: is \u201cfinancial point of view\u201d the sole consideration when determining whether an offer is superior?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_fls_(mae)_standard"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what is the Forward Looking Standard (FLS) with respect to Material Adverse Effect (MAE)?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_general_economic_and_financial_conditions_subject_to_disproportionate_impact_modifier"] = {
+    "description": "Read an excerpt from a merger agreement and answer: do changes caused by general economic and financial conditions that have disproportionate impact qualify for Material Adverse Effect (MAE)?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_includes_consistent_with_past_practice"] = {
+    "description": "Read an excerpt from a merger agreement and answer: does the wording of the Efforts Covenant clause include \u201cconsistent with past practice\u201d?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_initial_matching_rights_period_(cor)"] = {
+    "description": "Read an excerpt from a merger agreement and answer: how long is the initial matching rights period in case the board changes its recommendation?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_initial_matching_rights_period_(ftr)"] = {
+    "description": "Read an excerpt from a merger agreement and answer: how long is the initial matching rights period in connection with the Fiduciary Termination Right (FTR)?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_intervening_event_-_required_to_occur_after_signing_-_answer"] = {
+    "description": "Read an excerpt from a merger agreement and answer: is an \u201cIntervening Event\u201d required to occur after signing?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_knowledge_definition"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what counts as Knowledge?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_liability_standard_for_no-shop_breach_by_target_non-do_representatives"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what is the liability standard for no-shop breach by Target Non-D&O Representatives?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_ordinary_course_efforts_standard"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what is the efforts standard?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_pandemic_or_other_public_health_event__subject_to_disproportionate_impact_modifier"] = {
+    "description": "Read an excerpt from a merger agreement and answer: do pandemics or other public health events have to have disproportionate impact to qualify for Material Adverse Effect (MAE)?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_pandemic_or_other_public_health_event_specific_reference_to_pandemic-related_governmental_responses_or_measures"] = {
+    "description": "Read an excerpt from a merger agreement and answer: is there specific reference to pandemic-related governmental responses or measures in the clause that qualifies pandemics or other public health events for Material Adverse Effect (MAE)?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_relational_language_(mae)_applies_to"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what carveouts pertaining to Material Adverse Effect (MAE) does the relational language apply to?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_specific_performance"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what is the wording of the Specific Performance clause regarding the parties\u2019 entitlement in the event of a contractual breach?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_tail_period_length"] = {
+    "description": "Read an excerpt from a merger agreement and answer: how long is the Tail Period?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["maud_type_of_consideration"] = {
+    "description": "Read an excerpt from a merger agreement and answer: what type of consideration is specified in this agreement?",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["nys_judicial_ethics"] = {
+    "description": "Answer questions on judicial ethics from the New York State Unified Court System Advisory Committee.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "question": datasets.Value("string"),
+        "year": datasets.Value("string")
+    },
+    "license": MIT
+}
+_CONFIGS["opp115_data_retention"] = {
+    "description": "Given a clause from a privacy policy, classify if the clause describes how long user information is stored.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_ATT_NC_L
+}
+_CONFIGS["opp115_data_security"] = {
+    "description": "Given a clause from a privacy policy, classify if the clause describes how user information is protected.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_ATT_NC_L
+}
+_CONFIGS["opp115_do_not_track"] = {
+    "description": "Given a clause from a privacy policy, classify if the clause describes if and how Do Not Track signals for online tracking and advertising are honored.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_ATT_NC_L
+}
+_CONFIGS["opp115_first_party_collection_use"] = {
+    "description": "Given a clause from a privacy policy, classify if the clause describes how and why a service provider collects user information.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_ATT_NC_L
+}
+_CONFIGS["opp115_international_and_specific_audiences"] = {
+    "description": "Given a clause from a privacy policy, classify if the clause describe practices that pertain only to a specific group of users (e.g., children, Europeans, or California residents).",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_ATT_NC_L
+}
+_CONFIGS["opp115_policy_change"] = {
+    "description": "Given a clause from a privacy policy, classify if the clause describes if and how users will be informed about changes to the privacy policy.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_ATT_NC_L
+}
+_CONFIGS["opp115_third_party_sharing_collection"] = {
+    "description": "Given a clause from a privacy policy, classify if the clause describe how user information may be shared with or collected by third parties.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_ATT_NC_L
+}
+_CONFIGS["opp115_user_access,_edit_and_deletion"] = {
+    "description": "Given a clause from a privacy policy, classify if the clause describes if and how users may access, edit, or delete their information.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_ATT_NC_L
+}
+_CONFIGS["opp115_user_choice_control"] = {
+    "description": "Given a clause fro ma privacy policy, classify if the clause describes the choices and control options available to users.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_ATT_NC_L
+}
+_CONFIGS["oral_argument_question_purpose"] = {
+    "description": "Given a question asked during oral argument, classify the purpose of the question.",
+    "features": {
+        "Docket No.": datasets.Value("string"),
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "question": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["overruling"] = {
+    "description": "Classify whether a sentence from a judicial opinion overrules a previous case.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["personal_jurisdiction"] = {
+    "description": "Given a fact pattern describing the set of contacts between a plaintiff, defendant, and forum, determine if a court in that forum could excercise personal jurisdiction over the defendant.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "slice": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["privacy_policy_entailment"] = {
+    "description": "Given a privacy policy clause and a description of the clause, determine if the description is correct.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "description": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC_3
+}
+_CONFIGS["privacy_policy_qa"] = {
+    "description": "Given a question and a clause from a privacy policy, determine if the clause contains enough information to answer the question.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "question": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": MIT
+}
+_CONFIGS["proa"] = {
+    "description": "Given a statute, determine if the text contains an explicit private right of action.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["rule_qa"] = {
+    "description": "Answer questions about federal and state law.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "doctrine": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["sara_entailment"] = {
+    "description": "Given a statute, a fact pattern, and an assertion, determine if the assertion is \"entailed\" by the fact pattern and statute.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "case id": datasets.Value("string"),
+        "description": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "question": datasets.Value("string"),
+        "statute": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": MIT
+}
+_CONFIGS["sara_numeric"] = {
+    "description": "Given a statute and a set of facts, determine how much tax an individual owes.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "case id": datasets.Value("string"),
+        "description": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "question": datasets.Value("string"),
+        "statute": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": MIT
+}
+_CONFIGS["scalr"] = {
+    "description": "Choice Selection",
+    "features": {
+        "answer": datasets.Value("string"),
+        "choice_0": datasets.Value("string"),
+        "choice_1": datasets.Value("string"),
+        "choice_2": datasets.Value("string"),
+        "choice_3": datasets.Value("string"),
+        "choice_4": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "question": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["ssla_company_defendants"] = {
+    "description": "Extract the identities of the company defendants from excerpts of securities class action complaints.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["ssla_individual_defendants"] = {
+    "description": "Extract the identities of individual defendants from excerpts of securities class action complaints.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["ssla_plaintiff"] = {
+    "description": "Extract the identities of the plaintiffs from excerpts of securities class action complaints.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["successor_liability"] = {
+    "description": "Given a fact pattern, identify the type of successor liability present.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "issue": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["supply_chain_disclosure_best_practice_accountability"] = {
+    "description": "Given a supply chain disclosure, determine if the statement discloses whether the retail seller or manufacturer maintains internal compliance procedures on company standards regarding human trafficking and slavery.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["supply_chain_disclosure_best_practice_audits"] = {
+    "description": "Given a supply chain disclosure, determine if the statement discloses whether the retail seller or manufacturer performs any type of audit, or reserves the right to audit.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["supply_chain_disclosure_best_practice_certification"] = {
+    "description": "Given a supply chain disclosure, determine if the statement discloses whether the retail seller or manufacturer requires direct suppliers to certify that they comply with labor and anti-trafficking laws.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["supply_chain_disclosure_best_practice_training"] = {
+    "description": "Given a supply chain disclosure, determine if the statement discloses whether the retail seller or manufacturer  provides training to employees on human trafficking and slavery.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["supply_chain_disclosure_best_practice_verification"] = {
+    "description": "Given a supply chain disclosure, determine if the statement discloses whether the retail seller or manufacturer engages in verification and auditing as one practice, expresses that it may conduct an audit, or expressess that it is assessing supplier risks through a review of the US Dept. of Labor's List.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["supply_chain_disclosure_disclosed_accountability"] = {
+    "description": "Given a supply chain disclosure, determine whether the statement discloses to what extent, if any, that the retail seller or manufacturer maintains internal accountability standards and procedures for employees or contractors failing to meet company standards regarding slavery and trafficking.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["supply_chain_disclosure_disclosed_audits"] = {
+    "description": "Given a disclosure, determine whether the statement discloses to what extent, if any, that the retail seller or manufacturer conducts audits of suppliers to evaluate supplier compliance with company standards for trafficking and slavery in supply chains.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["supply_chain_disclosure_disclosed_certification"] = {
+    "description": "Given a supply chain disclosure, determine if the statement discloses to what extent, if any, that the retail seller or manufacturer requires direct suppliers to certify that materials incorporated into the product comply with the laws regarding slavery and human trafficking of the country or countries in which they are doing business.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["supply_chain_disclosure_disclosed_training"] = {
+    "description": "Given a supply chain disclosure, determine if the statement discloses whether the retail seller or manufacturer provides company employees and management, who have direct responsibility for supply chain management, training on human trafficking and slavery, particularly with respect to mitigating risks within the supply chains of products.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["supply_chain_disclosure_disclosed_verification"] = {
+    "description": "Given a supply chain disclosure, determine if the statement discloses whether the retail seller or manufacturer engages in verification of product supply chains to evaluate and address risks of human trafficking and slavery.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["telemarketing_sales_rule"] = {
+    "description": "Determine how 16 C.F.R. \u00a7 310.3(a)(1) and 16 C.F.R. \u00a7 310.3(a)(2) (governing deceptive practices) apply to different fact patterns.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["textualism_tool_dictionaries"] = {
+    "description": "Determine if a paragraph from a judicial opinion is applying a form textualism that relies on the dictionary meaning of terms.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC
+}
+_CONFIGS["textualism_tool_plain"] = {
+    "description": "Determine if a paragraph from a judicial opinion is applying a form textualism that relies on the ordinary (\"plain\") meaning of terms.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_NC
+}
+_CONFIGS["ucc_v_common_law"] = {
+    "description": "Determine if a contract is governed by the Uniform Commercial Code (UCC) or the common law of contracts.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "contract": datasets.Value("string"),
+        "index": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+_CONFIGS["unfair_tos"] = {
+    "description": "Given a clause from a terms-of-service contract, determine the category the clause belongs to.",
+    "features": {
+        "answer": datasets.Value("string"),
+        "index": datasets.Value("string"),
+        "text": datasets.Value("string")
+    },
+    "license": CC_BY_4
+}
+
+
+class LegalBench(datasets.GeneratorBasedBuilder):
+    """TODO"""
+
+    BUILDER_CONFIGS = [
+        datasets.BuilderConfig(
+            name=task, version=datasets.Version("1.0.0"), description=f"LegalBench Task {task}"
+        )
+        for task in _CONFIGS
+    ]
+
+    def _info(self):
+        features = _CONFIGS[self.config.name]["features"]
+        return datasets.DatasetInfo(
+            description=_DESCRIPTION,
+            features=datasets.Features(features),
+            homepage=_HOMEPAGE,
+            citation=_CITATION,
+            license=_CONFIGS[self.config.name]["license"],
+        )
+
+    def _split_generators(self, dl_manager):
+        """Returns SplitGenerators."""
+        archive = dl_manager.download(_URL)
+        if self.config.name in ["rule_qa", "scalr"]:
+            # RuleQA has only one split
+            return [
+                datasets.SplitGenerator(
+                    name=datasets.Split.TEST,
+                    gen_kwargs={
+                        "iter_archive": dl_manager.iter_archive(archive),
+                        "filepath": f"data/{self.config.name}/test.tsv",
+                    },
+                ),
+            ] 
+        else:
+            return [
+                datasets.SplitGenerator(
+                    name=datasets.Split.TRAIN,
+                    gen_kwargs={
+                        "iter_archive": dl_manager.iter_archive(archive),
+                        "filepath": f"data/{self.config.name}/train.tsv",
+                    },
+                ),
+                datasets.SplitGenerator(
+                    name=datasets.Split.TEST,
+                    gen_kwargs={
+                        "iter_archive": dl_manager.iter_archive(archive),
+                        "filepath": f"data/{self.config.name}/test.tsv",
+                    },
+                ),
+            ]
+
+    def _generate_examples(self, iter_archive, filepath):
+        """Yields examples as (key, example) tuples."""
+        for id_file, (path, file) in enumerate(iter_archive):
+            if filepath in path:
+                lines = "".join([line.decode("utf-8") for line in file])
+                csvStringIO = StringIO(lines)
+                data = pd.read_csv(csvStringIO, sep="\t").to_dict(orient="records")
+                for id_line, data in enumerate(data):
+                    yield id_line, data

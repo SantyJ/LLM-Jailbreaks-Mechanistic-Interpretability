@@ -1,0 +1,3136 @@
+---
+language:
+- en
+license: other
+size_categories:
+- 10K<n<100K
+task_categories:
+- text-classification
+- question-answering
+- text-generation
+tags:
+- legal
+- law
+- finance
+dataset_info:
+- config_name: abercrombie
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 307
+    num_examples: 5
+  - name: test
+    num_bytes: 6240
+    num_examples: 95
+  download_size: 19558988
+  dataset_size: 6547
+- config_name: canada_tax_court_outcomes
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2975
+    num_examples: 6
+  - name: test
+    num_bytes: 157411
+    num_examples: 244
+  download_size: 19558988
+  dataset_size: 160386
+- config_name: citation_prediction_classification
+  features:
+  - name: answer
+    dtype: string
+  - name: citation
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 660
+    num_examples: 2
+  - name: test
+    num_bytes: 26112
+    num_examples: 108
+  download_size: 19558988
+  dataset_size: 26772
+- config_name: citation_prediction_open
+  features:
+  - name: answer
+    dtype: string
+  - name: circuit
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 555
+    num_examples: 2
+  - name: test
+    num_bytes: 13460
+    num_examples: 53
+  download_size: 19558988
+  dataset_size: 14015
+- config_name: consumer_contracts_qa
+  features:
+  - name: answer
+    dtype: string
+  - name: contract
+    dtype: string
+  - name: index
+    dtype: string
+  - name: question
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 9941
+    num_examples: 4
+  - name: test
+    num_bytes: 1221320
+    num_examples: 396
+  download_size: 19558988
+  dataset_size: 1231261
+- config_name: contract_nli_confidentiality_of_agreement
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 4070
+    num_examples: 8
+  - name: test
+    num_bytes: 43818
+    num_examples: 82
+  download_size: 19558988
+  dataset_size: 47888
+- config_name: contract_nli_explicit_identification
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3615
+    num_examples: 8
+  - name: test
+    num_bytes: 62133
+    num_examples: 109
+  download_size: 19558988
+  dataset_size: 65748
+- config_name: contract_nli_inclusion_of_verbally_conveyed_information
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3817
+    num_examples: 8
+  - name: test
+    num_bytes: 81933
+    num_examples: 139
+  download_size: 19558988
+  dataset_size: 85750
+- config_name: contract_nli_limited_use
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 4855
+    num_examples: 8
+  - name: test
+    num_bytes: 98534
+    num_examples: 208
+  download_size: 19558988
+  dataset_size: 103389
+- config_name: contract_nli_no_licensing
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2591
+    num_examples: 8
+  - name: test
+    num_bytes: 78173
+    num_examples: 162
+  download_size: 19558988
+  dataset_size: 80764
+- config_name: contract_nli_notice_on_compelled_disclosure
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3907
+    num_examples: 8
+  - name: test
+    num_bytes: 80470
+    num_examples: 142
+  download_size: 19558988
+  dataset_size: 84377
+- config_name: contract_nli_permissible_acquirement_of_similar_information
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2736
+    num_examples: 8
+  - name: test
+    num_bytes: 87469
+    num_examples: 178
+  download_size: 19558988
+  dataset_size: 90205
+- config_name: contract_nli_permissible_copy
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3480
+    num_examples: 8
+  - name: test
+    num_bytes: 39015
+    num_examples: 87
+  download_size: 19558988
+  dataset_size: 42495
+- config_name: contract_nli_permissible_development_of_similar_information
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3921
+    num_examples: 8
+  - name: test
+    num_bytes: 62603
+    num_examples: 136
+  download_size: 19558988
+  dataset_size: 66524
+- config_name: contract_nli_permissible_post-agreement_possession
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 4608
+    num_examples: 8
+  - name: test
+    num_bytes: 65932
+    num_examples: 111
+  download_size: 19558988
+  dataset_size: 70540
+- config_name: contract_nli_return_of_confidential_information
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3499
+    num_examples: 8
+  - name: test
+    num_bytes: 35672
+    num_examples: 66
+  download_size: 19558988
+  dataset_size: 39171
+- config_name: contract_nli_sharing_with_employees
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3173
+    num_examples: 8
+  - name: test
+    num_bytes: 104240
+    num_examples: 170
+  download_size: 19558988
+  dataset_size: 107413
+- config_name: contract_nli_sharing_with_third-parties
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3249
+    num_examples: 8
+  - name: test
+    num_bytes: 104822
+    num_examples: 180
+  download_size: 19558988
+  dataset_size: 108071
+- config_name: contract_nli_survival_of_obligations
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2272
+    num_examples: 8
+  - name: test
+    num_bytes: 75450
+    num_examples: 157
+  download_size: 19558988
+  dataset_size: 77722
+- config_name: contract_qa
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: question
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2408
+    num_examples: 8
+  - name: test
+    num_bytes: 26370
+    num_examples: 80
+  download_size: 19558988
+  dataset_size: 28778
+- config_name: corporate_lobbying
+  features:
+  - name: answer
+    dtype: string
+  - name: bill_summary
+    dtype: string
+  - name: bill_title
+    dtype: string
+  - name: company_description
+    dtype: string
+  - name: company_name
+    dtype: string
+  - name: index
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 54334
+    num_examples: 10
+  - name: test
+    num_bytes: 2974813
+    num_examples: 490
+  download_size: 19558988
+  dataset_size: 3029147
+- config_name: cuad_affiliate_license-licensee
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 4067
+    num_examples: 6
+  - name: test
+    num_bytes: 115798
+    num_examples: 198
+  download_size: 19558988
+  dataset_size: 119865
+- config_name: cuad_affiliate_license-licensor
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 4247
+    num_examples: 6
+  - name: test
+    num_bytes: 64931
+    num_examples: 88
+  download_size: 19558988
+  dataset_size: 69178
+- config_name: cuad_anti-assignment
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2070
+    num_examples: 6
+  - name: test
+    num_bytes: 513026
+    num_examples: 1172
+  download_size: 19558988
+  dataset_size: 515096
+- config_name: cuad_audit_rights
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2555
+    num_examples: 6
+  - name: test
+    num_bytes: 526977
+    num_examples: 1216
+  download_size: 19558988
+  dataset_size: 529532
+- config_name: cuad_cap_on_liability
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2621
+    num_examples: 6
+  - name: test
+    num_bytes: 587220
+    num_examples: 1246
+  download_size: 19558988
+  dataset_size: 589841
+- config_name: cuad_change_of_control
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2231
+    num_examples: 6
+  - name: test
+    num_bytes: 203823
+    num_examples: 416
+  download_size: 19558988
+  dataset_size: 206054
+- config_name: cuad_competitive_restriction_exception
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2774
+    num_examples: 6
+  - name: test
+    num_bytes: 115844
+    num_examples: 220
+  download_size: 19558988
+  dataset_size: 118618
+- config_name: cuad_covenant_not_to_sue
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2581
+    num_examples: 6
+  - name: test
+    num_bytes: 153799
+    num_examples: 308
+  download_size: 19558988
+  dataset_size: 156380
+- config_name: cuad_effective_date
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2080
+    num_examples: 6
+  - name: test
+    num_bytes: 87802
+    num_examples: 236
+  download_size: 19558988
+  dataset_size: 89882
+- config_name: cuad_exclusivity
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1897
+    num_examples: 6
+  - name: test
+    num_bytes: 355097
+    num_examples: 762
+  download_size: 19558988
+  dataset_size: 356994
+- config_name: cuad_expiration_date
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1638
+    num_examples: 6
+  - name: test
+    num_bytes: 354232
+    num_examples: 876
+  download_size: 19558988
+  dataset_size: 355870
+- config_name: cuad_governing_law
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2420
+    num_examples: 6
+  - name: test
+    num_bytes: 337322
+    num_examples: 876
+  download_size: 19558988
+  dataset_size: 339742
+- config_name: cuad_insurance
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2537
+    num_examples: 6
+  - name: test
+    num_bytes: 475827
+    num_examples: 1030
+  download_size: 19558988
+  dataset_size: 478364
+- config_name: cuad_ip_ownership_assignment
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 4756
+    num_examples: 6
+  - name: test
+    num_bytes: 294749
+    num_examples: 576
+  download_size: 19558988
+  dataset_size: 299505
+- config_name: cuad_irrevocable_or_perpetual_license
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 5328
+    num_examples: 6
+  - name: test
+    num_bytes: 160279
+    num_examples: 280
+  download_size: 19558988
+  dataset_size: 165607
+- config_name: cuad_joint_ip_ownership
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 5011
+    num_examples: 6
+  - name: test
+    num_bytes: 90592
+    num_examples: 192
+  download_size: 19558988
+  dataset_size: 95603
+- config_name: cuad_license_grant
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3690
+    num_examples: 6
+  - name: test
+    num_bytes: 709331
+    num_examples: 1396
+  download_size: 19558988
+  dataset_size: 713021
+- config_name: cuad_liquidated_damages
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3579
+    num_examples: 6
+  - name: test
+    num_bytes: 97839
+    num_examples: 220
+  download_size: 19558988
+  dataset_size: 101418
+- config_name: cuad_minimum_commitment
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2874
+    num_examples: 6
+  - name: test
+    num_bytes: 354078
+    num_examples: 772
+  download_size: 19558988
+  dataset_size: 356952
+- config_name: cuad_most_favored_nation
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2103
+    num_examples: 6
+  - name: test
+    num_bytes: 32800
+    num_examples: 64
+  download_size: 19558988
+  dataset_size: 34903
+- config_name: cuad_no-solicit_of_customers
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3310
+    num_examples: 6
+  - name: test
+    num_bytes: 40828
+    num_examples: 84
+  download_size: 19558988
+  dataset_size: 44138
+- config_name: cuad_no-solicit_of_employees
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3619
+    num_examples: 6
+  - name: test
+    num_bytes: 72661
+    num_examples: 142
+  download_size: 19558988
+  dataset_size: 76280
+- config_name: cuad_non-compete
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3675
+    num_examples: 6
+  - name: test
+    num_bytes: 211272
+    num_examples: 442
+  download_size: 19558988
+  dataset_size: 214947
+- config_name: cuad_non-disparagement
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2168
+    num_examples: 6
+  - name: test
+    num_bytes: 49850
+    num_examples: 100
+  download_size: 19558988
+  dataset_size: 52018
+- config_name: cuad_non-transferable_license
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3643
+    num_examples: 6
+  - name: test
+    num_bytes: 269505
+    num_examples: 542
+  download_size: 19558988
+  dataset_size: 273148
+- config_name: cuad_notice_period_to_terminate_renewal
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 4166
+    num_examples: 6
+  - name: test
+    num_bytes: 100014
+    num_examples: 222
+  download_size: 19558988
+  dataset_size: 104180
+- config_name: cuad_post-termination_services
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3349
+    num_examples: 6
+  - name: test
+    num_bytes: 419477
+    num_examples: 808
+  download_size: 19558988
+  dataset_size: 422826
+- config_name: cuad_price_restrictions
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2945
+    num_examples: 6
+  - name: test
+    num_bytes: 19430
+    num_examples: 46
+  download_size: 19558988
+  dataset_size: 22375
+- config_name: cuad_renewal_term
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2163
+    num_examples: 6
+  - name: test
+    num_bytes: 168528
+    num_examples: 386
+  download_size: 19558988
+  dataset_size: 170691
+- config_name: cuad_revenue-profit_sharing
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2581
+    num_examples: 6
+  - name: test
+    num_bytes: 363594
+    num_examples: 774
+  download_size: 19558988
+  dataset_size: 366175
+- config_name: cuad_rofr-rofo-rofn
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2817
+    num_examples: 6
+  - name: test
+    num_bytes: 338243
+    num_examples: 690
+  download_size: 19558988
+  dataset_size: 341060
+- config_name: cuad_source_code_escrow
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2696
+    num_examples: 6
+  - name: test
+    num_bytes: 58125
+    num_examples: 118
+  download_size: 19558988
+  dataset_size: 60821
+- config_name: cuad_termination_for_convenience
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1506
+    num_examples: 6
+  - name: test
+    num_bytes: 181164
+    num_examples: 430
+  download_size: 19558988
+  dataset_size: 182670
+- config_name: cuad_third_party_beneficiary
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2378
+    num_examples: 6
+  - name: test
+    num_bytes: 24106
+    num_examples: 68
+  download_size: 19558988
+  dataset_size: 26484
+- config_name: cuad_uncapped_liability
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2570
+    num_examples: 6
+  - name: test
+    num_bytes: 158009
+    num_examples: 294
+  download_size: 19558988
+  dataset_size: 160579
+- config_name: cuad_unlimited-all-you-can-eat-license
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2414
+    num_examples: 6
+  - name: test
+    num_bytes: 22347
+    num_examples: 48
+  download_size: 19558988
+  dataset_size: 24761
+- config_name: cuad_volume_restriction
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1397
+    num_examples: 6
+  - name: test
+    num_bytes: 129456
+    num_examples: 322
+  download_size: 19558988
+  dataset_size: 130853
+- config_name: cuad_warranty_duration
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  - name: document_name
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1815
+    num_examples: 6
+  - name: test
+    num_bytes: 142580
+    num_examples: 320
+  download_size: 19558988
+  dataset_size: 144395
+- config_name: definition_classification
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1826
+    num_examples: 8
+  - name: test
+    num_bytes: 371743
+    num_examples: 1337
+  download_size: 19558988
+  dataset_size: 373569
+- config_name: definition_extraction
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2731
+    num_examples: 8
+  - name: test
+    num_bytes: 254689
+    num_examples: 687
+  download_size: 19558988
+  dataset_size: 257420
+- config_name: diversity_1
+  features:
+  - name: aic_is_met
+    dtype: string
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: parties_are_diverse
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 803
+    num_examples: 6
+  - name: test
+    num_bytes: 41135
+    num_examples: 300
+  download_size: 19558988
+  dataset_size: 41938
+- config_name: diversity_2
+  features:
+  - name: aic_is_met
+    dtype: string
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: parties_are_diverse
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1041
+    num_examples: 6
+  - name: test
+    num_bytes: 53537
+    num_examples: 300
+  download_size: 19558988
+  dataset_size: 54578
+- config_name: diversity_3
+  features:
+  - name: aic_is_met
+    dtype: string
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: parties_are_diverse
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 992
+    num_examples: 6
+  - name: test
+    num_bytes: 50744
+    num_examples: 300
+  download_size: 19558988
+  dataset_size: 51736
+- config_name: diversity_4
+  features:
+  - name: aic_is_met
+    dtype: string
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: parties_are_diverse
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1070
+    num_examples: 6
+  - name: test
+    num_bytes: 53464
+    num_examples: 300
+  download_size: 19558988
+  dataset_size: 54534
+- config_name: diversity_5
+  features:
+  - name: aic_is_met
+    dtype: string
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: parties_are_diverse
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1232
+    num_examples: 6
+  - name: test
+    num_bytes: 62550
+    num_examples: 300
+  download_size: 19558988
+  dataset_size: 63782
+- config_name: diversity_6
+  features:
+  - name: aic_is_met
+    dtype: string
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: parties_are_diverse
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2016
+    num_examples: 6
+  - name: test
+    num_bytes: 100411
+    num_examples: 300
+  download_size: 19558988
+  dataset_size: 102427
+- config_name: function_of_decision_section
+  features:
+  - name: Citation
+    dtype: string
+  - name: Paragraph
+    dtype: string
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1547
+    num_examples: 7
+  - name: test
+    num_bytes: 210419
+    num_examples: 367
+  download_size: 19558988
+  dataset_size: 211966
+- config_name: hearsay
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: slice
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 788
+    num_examples: 5
+  - name: test
+    num_bytes: 17150
+    num_examples: 94
+  download_size: 19558988
+  dataset_size: 17938
+- config_name: insurance_policy_interpretation
+  features:
+  - name: answer
+    dtype: string
+  - name: claim
+    dtype: string
+  - name: index
+    dtype: string
+  - name: policy
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3119
+    num_examples: 5
+  - name: test
+    num_bytes: 70764
+    num_examples: 133
+  download_size: 19558988
+  dataset_size: 73883
+- config_name: international_citizenship_questions
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: question
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 832
+    num_examples: 4
+  - name: test
+    num_bytes: 2089107
+    num_examples: 9306
+  download_size: 19558988
+  dataset_size: 2089939
+- config_name: jcrew_blocker
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 7352
+    num_examples: 6
+  - name: test
+    num_bytes: 59879
+    num_examples: 54
+  download_size: 19558988
+  dataset_size: 67231
+- config_name: learned_hands_benefits
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 8267
+    num_examples: 6
+  - name: test
+    num_bytes: 87512
+    num_examples: 66
+  download_size: 19558988
+  dataset_size: 95779
+- config_name: learned_hands_business
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 6075
+    num_examples: 6
+  - name: test
+    num_bytes: 202116
+    num_examples: 174
+  download_size: 19558988
+  dataset_size: 208191
+- config_name: learned_hands_consumer
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 6355
+    num_examples: 6
+  - name: test
+    num_bytes: 795463
+    num_examples: 614
+  download_size: 19558988
+  dataset_size: 801818
+- config_name: learned_hands_courts
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 10693
+    num_examples: 6
+  - name: test
+    num_bytes: 228204
+    num_examples: 192
+  download_size: 19558988
+  dataset_size: 238897
+- config_name: learned_hands_crime
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 7322
+    num_examples: 6
+  - name: test
+    num_bytes: 846597
+    num_examples: 688
+  download_size: 19558988
+  dataset_size: 853919
+- config_name: learned_hands_divorce
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 10651
+    num_examples: 6
+  - name: test
+    num_bytes: 189279
+    num_examples: 150
+  download_size: 19558988
+  dataset_size: 199930
+- config_name: learned_hands_domestic_violence
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 11170
+    num_examples: 6
+  - name: test
+    num_bytes: 239797
+    num_examples: 174
+  download_size: 19558988
+  dataset_size: 250967
+- config_name: learned_hands_education
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 6992
+    num_examples: 6
+  - name: test
+    num_bytes: 79184
+    num_examples: 56
+  download_size: 19558988
+  dataset_size: 86176
+- config_name: learned_hands_employment
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 11223
+    num_examples: 6
+  - name: test
+    num_bytes: 909220
+    num_examples: 710
+  download_size: 19558988
+  dataset_size: 920443
+- config_name: learned_hands_estates
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 5970
+    num_examples: 6
+  - name: test
+    num_bytes: 216836
+    num_examples: 178
+  download_size: 19558988
+  dataset_size: 222806
+- config_name: learned_hands_family
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 8714
+    num_examples: 6
+  - name: test
+    num_bytes: 3073508
+    num_examples: 2265
+  download_size: 19558988
+  dataset_size: 3082222
+- config_name: learned_hands_health
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 6155
+    num_examples: 6
+  - name: test
+    num_bytes: 336934
+    num_examples: 226
+  download_size: 19558988
+  dataset_size: 343089
+- config_name: learned_hands_housing
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 9726
+    num_examples: 6
+  - name: test
+    num_bytes: 6028612
+    num_examples: 4494
+  download_size: 19558988
+  dataset_size: 6038338
+- config_name: learned_hands_immigration
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3955
+    num_examples: 6
+  - name: test
+    num_bytes: 165352
+    num_examples: 134
+  download_size: 19558988
+  dataset_size: 169307
+- config_name: learned_hands_torts
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 4484
+    num_examples: 6
+  - name: test
+    num_bytes: 615649
+    num_examples: 432
+  download_size: 19558988
+  dataset_size: 620133
+- config_name: learned_hands_traffic
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 6250
+    num_examples: 6
+  - name: test
+    num_bytes: 667539
+    num_examples: 556
+  download_size: 19558988
+  dataset_size: 673789
+- config_name: legal_reasoning_causality
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 4688
+    num_examples: 4
+  - name: test
+    num_bytes: 87007
+    num_examples: 55
+  download_size: 19558988
+  dataset_size: 91695
+- config_name: maud_ability_to_consummate_concept_is_subject_to_mae_carveouts
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 5322
+    num_examples: 1
+  - name: test
+    num_bytes: 304051
+    num_examples: 69
+  download_size: 19558988
+  dataset_size: 309373
+- config_name: maud_accuracy_of_fundamental_target_rws_bringdown_standard
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 271
+    num_examples: 1
+  - name: test
+    num_bytes: 148869
+    num_examples: 175
+  download_size: 19558988
+  dataset_size: 149140
+- config_name: maud_accuracy_of_target_capitalization_rw_(outstanding_shares)_bringdown_standard_answer
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1493
+    num_examples: 1
+  - name: test
+    num_bytes: 152224
+    num_examples: 181
+  download_size: 19558988
+  dataset_size: 153717
+- config_name: maud_accuracy_of_target_general_rw_bringdown_timing_answer
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1000
+    num_examples: 1
+  - name: test
+    num_bytes: 152717
+    num_examples: 181
+  download_size: 19558988
+  dataset_size: 153717
+- config_name: maud_additional_matching_rights_period_for_modifications_(cor)
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2170
+    num_examples: 1
+  - name: test
+    num_bytes: 312632
+    num_examples: 158
+  download_size: 19558988
+  dataset_size: 314802
+- config_name: maud_application_of_buyer_consent_requirement_(negative_interim_covenant)
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 558
+    num_examples: 1
+  - name: test
+    num_bytes: 96990
+    num_examples: 180
+  download_size: 19558988
+  dataset_size: 97548
+- config_name: maud_buyer_consent_requirement_(ordinary_course)
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2620
+    num_examples: 1
+  - name: test
+    num_bytes: 138668
+    num_examples: 181
+  download_size: 19558988
+  dataset_size: 141288
+- config_name: maud_change_in_law__subject_to_disproportionate_impact_modifier
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 6000
+    num_examples: 1
+  - name: test
+    num_bytes: 448666
+    num_examples: 99
+  download_size: 19558988
+  dataset_size: 454666
+- config_name: maud_changes_in_gaap_or_other_accounting_principles__subject_to_disproportionate_impact_modifier
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 5998
+    num_examples: 1
+  - name: test
+    num_bytes: 444442
+    num_examples: 98
+  download_size: 19558988
+  dataset_size: 450440
+- config_name: maud_cor_permitted_in_response_to_intervening_event
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2631
+    num_examples: 1
+  - name: test
+    num_bytes: 195447
+    num_examples: 100
+  download_size: 19558988
+  dataset_size: 198078
+- config_name: maud_cor_permitted_with_board_fiduciary_determination_only
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3970
+    num_examples: 1
+  - name: test
+    num_bytes: 194108
+    num_examples: 100
+  download_size: 19558988
+  dataset_size: 198078
+- config_name: maud_cor_standard_(intervening_event)
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 727
+    num_examples: 1
+  - name: test
+    num_bytes: 175140
+    num_examples: 84
+  download_size: 19558988
+  dataset_size: 175867
+- config_name: maud_cor_standard_(superior_offer)
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1173
+    num_examples: 1
+  - name: test
+    num_bytes: 196905
+    num_examples: 100
+  download_size: 19558988
+  dataset_size: 198078
+- config_name: maud_definition_contains_knowledge_requirement_-_answer
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1899
+    num_examples: 1
+  - name: test
+    num_bytes: 231405
+    num_examples: 147
+  download_size: 19558988
+  dataset_size: 233304
+- config_name: maud_definition_includes_asset_deals
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 614
+    num_examples: 1
+  - name: test
+    num_bytes: 289644
+    num_examples: 146
+  download_size: 19558988
+  dataset_size: 290258
+- config_name: maud_definition_includes_stock_deals
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 683
+    num_examples: 1
+  - name: test
+    num_bytes: 292466
+    num_examples: 148
+  download_size: 19558988
+  dataset_size: 293149
+- config_name: maud_fiduciary_exception__board_determination_standard
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1594
+    num_examples: 1
+  - name: test
+    num_bytes: 288180
+    num_examples: 179
+  download_size: 19558988
+  dataset_size: 289774
+- config_name: maud_fiduciary_exception_board_determination_trigger_(no_shop)
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3538
+    num_examples: 1
+  - name: test
+    num_bytes: 286236
+    num_examples: 179
+  download_size: 19558988
+  dataset_size: 289774
+- config_name: maud_financial_point_of_view_is_the_sole_consideration
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3290
+    num_examples: 1
+  - name: test
+    num_bytes: 217048
+    num_examples: 112
+  download_size: 19558988
+  dataset_size: 220338
+- config_name: maud_fls_(mae)_standard
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 4669
+    num_examples: 1
+  - name: test
+    num_bytes: 349856
+    num_examples: 77
+  download_size: 19558988
+  dataset_size: 354525
+- config_name: maud_general_economic_and_financial_conditions_subject_to_disproportionate_impact_modifier
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 5998
+    num_examples: 1
+  - name: test
+    num_bytes: 445306
+    num_examples: 98
+  download_size: 19558988
+  dataset_size: 451304
+- config_name: maud_includes_consistent_with_past_practice
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1127
+    num_examples: 1
+  - name: test
+    num_bytes: 140161
+    num_examples: 181
+  download_size: 19558988
+  dataset_size: 141288
+- config_name: maud_initial_matching_rights_period_(cor)
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3041
+    num_examples: 1
+  - name: test
+    num_bytes: 311761
+    num_examples: 158
+  download_size: 19558988
+  dataset_size: 314802
+- config_name: maud_initial_matching_rights_period_(ftr)
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1850
+    num_examples: 1
+  - name: test
+    num_bytes: 279202
+    num_examples: 132
+  download_size: 19558988
+  dataset_size: 281052
+- config_name: maud_intervening_event_-_required_to_occur_after_signing_-_answer
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3055
+    num_examples: 1
+  - name: test
+    num_bytes: 230249
+    num_examples: 147
+  download_size: 19558988
+  dataset_size: 233304
+- config_name: maud_knowledge_definition
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 240
+    num_examples: 1
+  - name: test
+    num_bytes: 359730
+    num_examples: 167
+  download_size: 19558988
+  dataset_size: 359970
+- config_name: maud_liability_standard_for_no-shop_breach_by_target_non-do_representatives
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 154
+    num_examples: 1
+  - name: test
+    num_bytes: 40946
+    num_examples: 156
+  download_size: 19558988
+  dataset_size: 41100
+- config_name: maud_ordinary_course_efforts_standard
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1037
+    num_examples: 1
+  - name: test
+    num_bytes: 140251
+    num_examples: 181
+  download_size: 19558988
+  dataset_size: 141288
+- config_name: maud_pandemic_or_other_public_health_event__subject_to_disproportionate_impact_modifier
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3728
+    num_examples: 1
+  - name: test
+    num_bytes: 447053
+    num_examples: 98
+  download_size: 19558988
+  dataset_size: 450781
+- config_name: maud_pandemic_or_other_public_health_event_specific_reference_to_pandemic-related_governmental_responses_or_measures
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3728
+    num_examples: 1
+  - name: test
+    num_bytes: 447053
+    num_examples: 98
+  download_size: 19558988
+  dataset_size: 450781
+- config_name: maud_relational_language_(mae)_applies_to
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 4948
+    num_examples: 1
+  - name: test
+    num_bytes: 409477
+    num_examples: 90
+  download_size: 19558988
+  dataset_size: 414425
+- config_name: maud_specific_performance
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 771
+    num_examples: 1
+  - name: test
+    num_bytes: 107392
+    num_examples: 178
+  download_size: 19558988
+  dataset_size: 108163
+- config_name: maud_tail_period_length
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 406
+    num_examples: 1
+  - name: test
+    num_bytes: 108632
+    num_examples: 179
+  download_size: 19558988
+  dataset_size: 109038
+- config_name: maud_type_of_consideration
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 258
+    num_examples: 1
+  - name: test
+    num_bytes: 139270
+    num_examples: 172
+  download_size: 19558988
+  dataset_size: 139528
+- config_name: nys_judicial_ethics
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: question
+    dtype: string
+  - name: year
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1697
+    num_examples: 8
+  - name: test
+    num_bytes: 53974
+    num_examples: 292
+  download_size: 19558988
+  dataset_size: 55671
+- config_name: opp115_data_retention
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1791
+    num_examples: 8
+  - name: test
+    num_bytes: 18620
+    num_examples: 88
+  download_size: 19558988
+  dataset_size: 20411
+- config_name: opp115_data_security
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2123
+    num_examples: 8
+  - name: test
+    num_bytes: 352667
+    num_examples: 1334
+  download_size: 19558988
+  dataset_size: 354790
+- config_name: opp115_do_not_track
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2507
+    num_examples: 8
+  - name: test
+    num_bytes: 26363
+    num_examples: 110
+  download_size: 19558988
+  dataset_size: 28870
+- config_name: opp115_first_party_collection_use
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2227
+    num_examples: 8
+  - name: test
+    num_bytes: 463566
+    num_examples: 2086
+  download_size: 19558988
+  dataset_size: 465793
+- config_name: opp115_international_and_specific_audiences
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1643
+    num_examples: 8
+  - name: test
+    num_bytes: 338196
+    num_examples: 980
+  download_size: 19558988
+  dataset_size: 339839
+- config_name: opp115_policy_change
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1201
+    num_examples: 8
+  - name: test
+    num_bytes: 94060
+    num_examples: 431
+  download_size: 19558988
+  dataset_size: 95261
+- config_name: opp115_third_party_sharing_collection
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1217
+    num_examples: 8
+  - name: test
+    num_bytes: 383909
+    num_examples: 1590
+  download_size: 19558988
+  dataset_size: 385126
+- config_name: opp115_user_access,_edit_and_deletion
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1251
+    num_examples: 8
+  - name: test
+    num_bytes: 108969
+    num_examples: 462
+  download_size: 19558988
+  dataset_size: 110220
+- config_name: opp115_user_choice_control
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1695
+    num_examples: 8
+  - name: test
+    num_bytes: 353113
+    num_examples: 1546
+  download_size: 19558988
+  dataset_size: 354808
+- config_name: oral_argument_question_purpose
+  features:
+  - name: Docket No.
+    dtype: string
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: question
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2415
+    num_examples: 7
+  - name: test
+    num_bytes: 95262
+    num_examples: 312
+  download_size: 19558988
+  dataset_size: 97677
+- config_name: overruling
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 629
+    num_examples: 6
+  - name: test
+    num_bytes: 443484
+    num_examples: 2394
+  download_size: 19558988
+  dataset_size: 444113
+- config_name: personal_jurisdiction
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: slice
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1660
+    num_examples: 4
+  - name: test
+    num_bytes: 21089
+    num_examples: 50
+  download_size: 19558988
+  dataset_size: 22749
+- config_name: privacy_policy_entailment
+  features:
+  - name: answer
+    dtype: string
+  - name: description
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 6282
+    num_examples: 8
+  - name: test
+    num_bytes: 3174950
+    num_examples: 4335
+  download_size: 19558988
+  dataset_size: 3181232
+- config_name: privacy_policy_qa
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: question
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2231
+    num_examples: 8
+  - name: test
+    num_bytes: 2817986
+    num_examples: 10923
+  download_size: 19558988
+  dataset_size: 2820217
+- config_name: proa
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1057
+    num_examples: 5
+  - name: test
+    num_bytes: 25475
+    num_examples: 95
+  download_size: 19558988
+  dataset_size: 26532
+- config_name: rule_qa
+  features:
+  - name: answer
+    dtype: string
+  - name: doctrine
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: test
+    num_bytes: 12665
+    num_examples: 50
+  download_size: 19558988
+  dataset_size: 12665
+- config_name: sara_entailment
+  features:
+  - name: answer
+    dtype: string
+  - name: case id
+    dtype: string
+  - name: description
+    dtype: string
+  - name: index
+    dtype: string
+  - name: question
+    dtype: string
+  - name: statute
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 2528
+    num_examples: 4
+  - name: test
+    num_bytes: 225560
+    num_examples: 272
+  download_size: 19558988
+  dataset_size: 228088
+- config_name: sara_numeric
+  features:
+  - name: answer
+    dtype: string
+  - name: case id
+    dtype: string
+  - name: description
+    dtype: string
+  - name: index
+    dtype: string
+  - name: question
+    dtype: string
+  - name: statute
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 238363
+    num_examples: 4
+  - name: test
+    num_bytes: 5725392
+    num_examples: 96
+  download_size: 19558988
+  dataset_size: 5963755
+- config_name: scalr
+  features:
+  - name: answer
+    dtype: string
+  - name: choice_0
+    dtype: string
+  - name: choice_1
+    dtype: string
+  - name: choice_2
+    dtype: string
+  - name: choice_3
+    dtype: string
+  - name: choice_4
+    dtype: string
+  - name: index
+    dtype: string
+  - name: question
+    dtype: string
+  splits:
+  - name: test
+    num_bytes: 1026740
+    num_examples: 571
+  download_size: 19558988
+  dataset_size: 1026740
+- config_name: ssla_company_defendants
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 5847
+    num_examples: 3
+  - name: test
+    num_bytes: 2313039
+    num_examples: 1228
+  download_size: 19558988
+  dataset_size: 2318886
+- config_name: ssla_individual_defendants
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 5962
+    num_examples: 3
+  - name: test
+    num_bytes: 2002620
+    num_examples: 1012
+  download_size: 19558988
+  dataset_size: 2008582
+- config_name: ssla_plaintiff
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 5831
+    num_examples: 3
+  - name: test
+    num_bytes: 1926518
+    num_examples: 1033
+  download_size: 19558988
+  dataset_size: 1932349
+- config_name: successor_liability
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: issue
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1734
+    num_examples: 3
+  - name: test
+    num_bytes: 26490
+    num_examples: 47
+  download_size: 19558988
+  dataset_size: 28224
+- config_name: supply_chain_disclosure_best_practice_accountability
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 18987
+    num_examples: 8
+  - name: test
+    num_bytes: 1347025
+    num_examples: 379
+  download_size: 19558988
+  dataset_size: 1366012
+- config_name: supply_chain_disclosure_best_practice_audits
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 23879
+    num_examples: 8
+  - name: test
+    num_bytes: 1342065
+    num_examples: 379
+  download_size: 19558988
+  dataset_size: 1365944
+- config_name: supply_chain_disclosure_best_practice_certification
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 22058
+    num_examples: 8
+  - name: test
+    num_bytes: 1338516
+    num_examples: 378
+  download_size: 19558988
+  dataset_size: 1360574
+- config_name: supply_chain_disclosure_best_practice_training
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 24071
+    num_examples: 8
+  - name: test
+    num_bytes: 1341885
+    num_examples: 379
+  download_size: 19558988
+  dataset_size: 1365956
+- config_name: supply_chain_disclosure_best_practice_verification
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 27158
+    num_examples: 8
+  - name: test
+    num_bytes: 1338739
+    num_examples: 379
+  download_size: 19558988
+  dataset_size: 1365897
+- config_name: supply_chain_disclosure_disclosed_accountability
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 18902
+    num_examples: 8
+  - name: test
+    num_bytes: 1344444
+    num_examples: 378
+  download_size: 19558988
+  dataset_size: 1363346
+- config_name: supply_chain_disclosure_disclosed_audits
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 24404
+    num_examples: 8
+  - name: test
+    num_bytes: 1341624
+    num_examples: 379
+  download_size: 19558988
+  dataset_size: 1366028
+- config_name: supply_chain_disclosure_disclosed_certification
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 17987
+    num_examples: 8
+  - name: test
+    num_bytes: 1342646
+    num_examples: 378
+  download_size: 19558988
+  dataset_size: 1360633
+- config_name: supply_chain_disclosure_disclosed_training
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 27093
+    num_examples: 8
+  - name: test
+    num_bytes: 1338919
+    num_examples: 379
+  download_size: 19558988
+  dataset_size: 1366012
+- config_name: supply_chain_disclosure_disclosed_verification
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 25387
+    num_examples: 8
+  - name: test
+    num_bytes: 1340578
+    num_examples: 379
+  download_size: 19558988
+  dataset_size: 1365965
+- config_name: telemarketing_sales_rule
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 1230
+    num_examples: 4
+  - name: test
+    num_bytes: 17140
+    num_examples: 47
+  download_size: 19558988
+  dataset_size: 18370
+- config_name: textualism_tool_dictionaries
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 4842
+    num_examples: 4
+  - name: test
+    num_bytes: 102644
+    num_examples: 107
+  download_size: 19558988
+  dataset_size: 107486
+- config_name: textualism_tool_plain
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3338
+    num_examples: 4
+  - name: test
+    num_bytes: 167428
+    num_examples: 165
+  download_size: 19558988
+  dataset_size: 170766
+- config_name: ucc_v_common_law
+  features:
+  - name: answer
+    dtype: string
+  - name: contract
+    dtype: string
+  - name: index
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 904
+    num_examples: 6
+  - name: test
+    num_bytes: 12694
+    num_examples: 94
+  download_size: 19558988
+  dataset_size: 13598
+- config_name: unfair_tos
+  features:
+  - name: answer
+    dtype: string
+  - name: index
+    dtype: string
+  - name: text
+    dtype: string
+  splits:
+  - name: train
+    num_bytes: 3308
+    num_examples: 9
+  - name: test
+    num_bytes: 787108
+    num_examples: 3813
+  download_size: 19558988
+  dataset_size: 790416
+---
+# Dataset Card for Dataset Name
+
+
+- **Homepage: https://hazyresearch.stanford.edu/legalbench/** 
+- **Repository: https://github.com/HazyResearch/legalbench/** 
+- **Paper: https://arxiv.org/abs/2308.11462** 
+
+## Dataset Description
+
+### Dataset Summary
+
+The LegalBench project is an ongoing open science effort to collaboratively curate tasks for evaluating legal reasoning in English large language models (LLMs). The benchmark currently consists of 162 tasks gathered from 40 contributors. 
+
+Note: Because LegalBench is intended to test zero and few-shot reasoning, the available "train" splits are small. However, if you are interested in finetuning models or studying model performance in a more traditional train/test regime, you can combine and re-partition train and test data.
+
+If you have questions about the project or would like to get involved, please see the website for more information.
+
+
+### Supported Tasks and Leaderboards
+
+LegalBench tasks span multiple types (binary classification, multi-class classification, extraction, generation, entailment), multiple types of text (statutes, judicial opinions, contracts, etc.), and multiple areas of law (evidence, contracts, civil procedure, etc.). For more information on tasks, we recommend visiting the website, where you can search through task descriptions, or the Github repository, which contains more granular task descriptions. We also recommend reading the paper, which provides more background on task significance and construction process.
+
+### Languages
+
+All LegalBench tasks are in English.
+
+## Dataset Structure
+
+### Data Instances
+
+Detailed descriptions of the instances for each task can be found on the Github. An example of an instance, for the `abercrombie` task, is provided below:
+
+```
+{
+  "text": "The mark "Ivory" for a product made of elephant tusks.",
+  "label": "generic" 
+  "idx": 0
+}
+```
+
+A substantial number of LegalBench tasks are binary classification tasks, which require the LLM to determine if a piece of text has some legal attribute. Because these are framed as Yes/No questions, the label space is "Yes" or "No".
+
+
+### Data Fields
+
+Detailed descriptions of the instances for each task can be found on the Github.
+
+### Data Splits
+
+Each task (except for `rule_qa` and `scalr`) has both a training and evaluation split. Following [RAFT](https://huggingface.co/datasets/ought/raft), train splits only consists of a few-labeled instances, reflecting the few-shot nature of most LLMs.
+
+
+## Dataset Creation
+
+### Curation Rationale
+
+LegalBench was created to enable researchers to better benchmark the legal reasoning capabilities of LLMs. 
+
+### Source Data
+
+#### Initial Data Collection and Normalization
+
+Broadly, LegalBench tasks are drawn from three sources. The first source of tasks are existing available datasets and corpora. Most of these were originally released for non-LLM evaluation settings. In creating tasks for LegalBench from these sources, we often significantly reformatted data and restructured the prediction objective. For instance, the original [CUAD dataset](https://github.com/TheAtticusProject/cuad) contains annotations on long-documents and is intended for evaluating extraction with span-prediction models. We restructure this corpora to generate a binary classification task for each type of contractual clause. While the original corpus emphasized the long-document aspects of contracts, our restructured tasks emphasize whether LLMs can identify the distinguishing features of different types of clauses. The second source of tasks are datasets that were previously constructed by legal professionals but never released. This primarily includes datasets hand-coded by legal scholars as part of prior empirical legal projects. The last category of tasks are those that were developed specifically for \name, by the authors of this paper. Overall, tasks are drawn from 36 distinct corpora. Please see the Appendix of the paper for more details.
+
+
+#### Who are the source language producers?
+
+LegalBench data was created by humans. Demographic information for these individuals is not available.
+
+### Annotations
+
+#### Annotation process
+
+Please see the paper for more information on the annotation process used in the creation of each task.
+
+#### Who are the annotators?
+
+Please see the paper for more information on the identity of annotators for each task.
+
+### Personal and Sensitive Information
+
+Data in this benchmark has either been synthetically generated, or derived from an already public source (e.g., contracts from the EDGAR database). 
+
+Several tasks have been derived from the LearnedHands corpus, which consists of public posts on /r/LegalAdvice. Some posts may discuss sensitive issues.
+
+## Considerations for Using the Data
+
+### Social Impact of Dataset
+
+Please see the original paper for a discussion of social impact. 
+
+### Discussion of Biases
+
+Please see the original paper for a discussion of social impact. 
+
+### Other Known Limitations
+
+LegalBench primarily contains tasks corresponding to American law.
+
+## Additional Information
+
+### Dataset Curators
+
+Please see the website for a full list of participants in the LegalBench project.
+
+### Licensing Information
+
+LegalBench tasks are subject to different licenses. Please see the paper for a description of the licenses.
+
+### Citation Information
+
+If you intend to reference LegalBench broadly, please use the citation below. If you are working with a particular task, please use the citation below in addition to the task specific citation (which can be found on the task page on the website or Github).
+
+```
+@misc{guha2023legalbench,
+      title={LegalBench: A Collaboratively Built Benchmark for Measuring Legal Reasoning in Large Language Models}, 
+      author={Neel Guha and Julian Nyarko and Daniel E. Ho and Christopher Ré and Adam Chilton and Aditya Narayana and Alex Chohlas-Wood and Austin Peters and Brandon Waldon and Daniel N. Rockmore and Diego Zambrano and Dmitry Talisman and Enam Hoque and Faiz Surani and Frank Fagan and Galit Sarfaty and Gregory M. Dickinson and Haggai Porat and Jason Hegland and Jessica Wu and Joe Nudell and Joel Niklaus and John Nay and Jonathan H. Choi and Kevin Tobia and Margaret Hagan and Megan Ma and Michael Livermore and Nikon Rasumov-Rahe and Nils Holzenberger and Noam Kolt and Peter Henderson and Sean Rehaag and Sharad Goel and Shang Gao and Spencer Williams and Sunny Gandhi and Tom Zur and Varun Iyer and Zehua Li},
+      year={2023},
+      eprint={2308.11462},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+@article{koreeda2021contractnli,
+  title={ContractNLI: A dataset for document-level natural language inference for contracts},
+  author={Koreeda, Yuta and Manning, Christopher D},
+  journal={arXiv preprint arXiv:2110.01799},
+  year={2021}
+}
+@article{hendrycks2021cuad,
+  title={Cuad: An expert-annotated nlp dataset for legal contract review},
+  author={Hendrycks, Dan and Burns, Collin and Chen, Anya and Ball, Spencer},
+  journal={arXiv preprint arXiv:2103.06268},
+  year={2021}
+}
+@article{wang2023maud,
+  title={MAUD: An Expert-Annotated Legal NLP Dataset for Merger Agreement Understanding},
+  author={Wang, Steven H and Scardigli, Antoine and Tang, Leonard and Chen, Wei and Levkin, Dimitry and Chen, Anya and Ball, Spencer and Woodside, Thomas and Zhang, Oliver and Hendrycks, Dan},
+  journal={arXiv preprint arXiv:2301.00876},
+  year={2023}
+}
+@inproceedings{wilson2016creation,
+  title={The creation and analysis of a website privacy policy corpus},
+  author={Wilson, Shomir and Schaub, Florian and Dara, Aswarth Abhilash and Liu, Frederick and Cherivirala, Sushain and Leon, Pedro Giovanni and Andersen, Mads Schaarup and Zimmeck, Sebastian and Sathyendra, Kanthashree Mysore and Russell, N Cameron and others},
+  booktitle={Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages={1330--1340},
+  year={2016}
+}
+@inproceedings{zheng2021does,
+  title={When does pretraining help? assessing self-supervised learning for law and the casehold dataset of 53,000+ legal holdings},
+  author={Zheng, Lucia and Guha, Neel and Anderson, Brandon R and Henderson, Peter and Ho, Daniel E},
+  booktitle={Proceedings of the eighteenth international conference on artificial intelligence and law},
+  pages={159--168},
+  year={2021}
+}
+@article{zimmeck2019maps,
+  title={Maps: Scaling privacy compliance analysis to a million apps},
+  author={Zimmeck, Sebastian and Story, Peter and Smullen, Daniel and Ravichander, Abhilasha and Wang, Ziqi and Reidenberg, Joel R and Russell, N Cameron and Sadeh, Norman},
+  journal={Proc. Priv. Enhancing Tech.},
+  volume={2019},
+  pages={66},
+  year={2019}
+}
+@article{ravichander2019question,
+  title={Question answering for privacy policies: Combining computational and legal perspectives},
+  author={Ravichander, Abhilasha and Black, Alan W and Wilson, Shomir and Norton, Thomas and Sadeh, Norman},
+  journal={arXiv preprint arXiv:1911.00841},
+  year={2019}
+}
+@article{holzenberger2021factoring,
+  title={Factoring statutory reasoning as language understanding challenges},
+  author={Holzenberger, Nils and Van Durme, Benjamin},
+  journal={arXiv preprint arXiv:2105.07903},
+  year={2021}
+}
+@article{lippi2019claudette,
+  title={CLAUDETTE: an automated detector of potentially unfair clauses in online terms of service},
+  author={Lippi, Marco and Pa{\l}ka, Przemys{\l}aw and Contissa, Giuseppe and Lagioia, Francesca and Micklitz, Hans-Wolfgang and Sartor, Giovanni and Torroni, Paolo},
+  journal={Artificial Intelligence and Law},
+  volume={27},
+  pages={117--139},
+  year={2019},
+  publisher={Springer}
+}
+```
